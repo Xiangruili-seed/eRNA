@@ -1,11 +1,12 @@
 ###########################################################step to prepare bam.sh
 dir=$1
 bed=$2
+BAM_FILE=$3
+
 nohup Rscript ~/eRNA/script/step1_filter.R ${dir} &
 wait;
-export BAM_FILE= ${dir}/data/*.bam
 # Save the header lines
-nohup ~/anaconda2/envs/r-env/bin/samtools view -@ 16 -H $BAM_FILE > ${dir}/data/SAM_header &
+nohup ~/anaconda2/envs/r-env/bin/samtools view -@ 16 -H ${BAM_FILE} > ${dir}/data/SAM_header &
 ##############去掉pca的outliers
 ######### run.sh
 cat ${dir}/data/cluster.txt|awk '{print "CB:Z:"$1}'>${dir}//data/f_barcode.txt
@@ -31,7 +32,7 @@ nohup ~/anaconda2/envs/r-env/bin/bedtools multicov -bams ${dir}/data/f_filtered.
 mkdir -p ${dir}/data//tmp
 nohup ~/anaconda2/envs/r-env/bin/samtools sort -@ 48 -t CB ${dir}/data/f_filtered.bam -o ${dir}/data/sorted_tags.bam -T ${dir}/data//tmp &
 wait;
-mkdir -p ${dir}/data/split
+mkdir -p ${dir}/data/splits
 cd ${dir}/data/splits/
 ################split bam
 nohup ~/anaconda2/envs/r-env/bin/python ~/eRNA/script/split.py ${dir}/data/sorted_tags.bam ${dir}/data/splits/ ${dir}/data/f_barcode.txt &
