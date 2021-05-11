@@ -1,4 +1,5 @@
 import pysam
+import sys
 
 ### Input varibles to set
 # file to split on
