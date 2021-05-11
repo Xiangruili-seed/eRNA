@@ -20,6 +20,7 @@ nohup cat ${dir}/data/SAM_header ${dir}/data/f_filtered_SAM_body > ${dir}/data/f
 wait;
 # Convert filtered.sam to BAM format
 nohup ~/anaconda2/envs/r-env/bin/samtools view -u -@ 48 -b -S ${dir}/data/f_filtered.sam -h -o ${dir}/data/f_filtered_1.bam &
+wait;
 nohup samtools view -H ${dir}/data/f_filtered_1.bam | sed -e 's/SN:\([0-9XY]\)/SN:chr\1/' -e 's/SN:MT/SN:chrM/' | samtools reheader - ${dir}/data/f_filtered_1.bam > ${dir}/data/f_filtered.bam &
 
 wait;
