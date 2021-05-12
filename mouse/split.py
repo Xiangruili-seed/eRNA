@@ -1,13 +1,12 @@
 import pysam
 import sys
-
 ### Input varibles to set
 # file to split on
-unsplit_file = open(sys.argv[1])
+unsplit_file = sys.argv[1]
 # where to place output files
-out_dir = open(sys.argv[2])
+out_dir = sys.argv[2]
 # variable to hold barcode index
-CB_hold = open(sys.argv[3])
+CB_hold = sys.argv[3]
 itr = 0
 # read in upsplit file and loop reads by line
 samfile = pysam.AlignmentFile( unsplit_file, "rb")
