@@ -39,6 +39,6 @@ mkdir -p ${dir}/data/splits
 cd ${dir}/data/splits/
 ################split bam
 nohup ~/anaconda2/envs/r-env/bin/python ~/eRNA/script/split.py ${dir}/data/sorted_tags.bam ${dir}/data/splits/ ${dir}/data/f_barcode.txt &
-nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam --filterRNAstrand forward -o ${dir}/data/filtered_forward.bigWig & 负
+nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam --filterRNAstrand forward -o ${dir}/data/filtered_forward.bigWig & #负
 nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam -o ${dir}/data/filtered.bigWig &
-nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam --filterRNAstrand reverse -o ${dir}/data/filtered_reverse.bigWig &正
+nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam --filterRNAstrand reverse -o ${dir}/data/filtered_reverse.bigWig & #正
