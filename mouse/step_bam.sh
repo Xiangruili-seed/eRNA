@@ -5,6 +5,7 @@ BAM_FILE=$3
 nohup Rscript ~/eRNA/script/step1_filter.R ${dir} &
 wait;
 # Save the header lines20.12.27
+source activate r-env
 nohup ~/anaconda2/envs/r-env/bin/samtools view -@ 16 -H ${BAM_FILE} > ${dir}/data/SAM_header &
 ##############去掉pca的outliers
 ######### run.sh
