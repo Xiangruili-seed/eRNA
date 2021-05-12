@@ -1,11 +1,10 @@
-###########################################################step to prepare bam.sh
 dir=$1
 bed=$2
 BAM_FILE=$3
 
 nohup Rscript ~/eRNA/script/step1_filter.R ${dir} &
 wait;
-# Save the header lines
+# Save the header lines20.12.27
 nohup ~/anaconda2/envs/r-env/bin/samtools view -@ 16 -H ${BAM_FILE} > ${dir}/data/SAM_header &
 ##############去掉pca的outliers
 ######### run.sh
@@ -34,7 +33,14 @@ nohup bedtools multicov -bams ${dir}/data/f_filtered.bam -bed ${bed} -S >${dir}/
 nohup bedtools multicov -bams ${dir}/data/f_filtered.bam -bed ${bed} >${dir}/data/f_dELS_reads.txt &
 mkdir -p ${dir}/data//tmp
 nohup ~/anaconda2/envs/r-env/bin/samtools sort -@ 48 -t CB ${dir}/data/f_filtered.bam -o ${dir}/data/sorted_tags.bam -T ${dir}/data//tmp &
+nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam --filterRNAstrand forward -o ${dir}/data/filtered_forward.bigWig & 负
+nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam -o ${dir}/data/filtered.bigWig &
+nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam --filterRNAstrand reverse -o ${dir}/data/filtered_reverse.bigWig &正
+
 wait;
+
+
+
 mkdir -p ${dir}/data/splits
 cd ${dir}/data/splits/
 ################split bam
