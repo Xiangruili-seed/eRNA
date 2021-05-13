@@ -15,3 +15,10 @@ nohup bash ~/eRNA/script/step_bam.sh ~/eRNA/mesc/Mesendoderm ~/eRNA/refdata-gex-
 nohup bash ~/eRNA/script/step_bam.sh ~/eRNA/mesc/Germ_layer ~/eRNA/refdata-gex-mm10-2020-A/pos_dELS.bed ~/eRNA/mesc/Germ_layer/data/germlayer_txm.possorted_genome_bam.bam &
 nohup bash ~/eRNA/script/step_bam.sh ~/eRNA/mesc/mix ~/eRNA/refdata-gex-mm10-2020-A/pos_dELS.bed ~/eRNA/mesc/mix/data/mixed_txm.possorted_genome_bam.bam &
 
+############get signal for eRNA
+source activate r-env
+
+nohup bash ~/eRNA/script/signal_eRNA.sh ~/eRNA/mesc/Mesendoderm &
+nohup bash ~/eRNA/script/signal_eRNA.sh ~/eRNA/mesc/Germ_layer &
+nohup bash ~/eRNA/script/signal_eRNA.sh ~/eRNA/mesc/mix &
+
