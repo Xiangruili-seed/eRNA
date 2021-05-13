@@ -1,12 +1,11 @@
 library(ggplot2)
-library(ggpubr)
 library (plotrix)
 library(grid)
 library(ggrepel)
 args<-commandArgs(T)
 annotation<-args[1]
 
-GM12878_GROcap_over_one <- read.table(paste('//data/tusers/lixiangr/eRNA/single-cell/hg38/PBMCs/data/dELS_reads_',annotation,'.txt',sep = ""), header = F)
+GM12878_GROcap_over_one <- read.table(paste(annotation,sep = ""), header = F)
  data<-data.frame(cbind(c(1:nrow(GM12878_GROcap_over_one)),sort(GM12878_GROcap_over_one[,7])))
  #This function calculates the cutoff by sliding a diagonal line and finding where it is tangential (or as close as possible)
  calculate_cutoff <- function(inputVector, drawPlot=TRUE,...){
@@ -44,9 +43,9 @@ p1<-ggplot(data=data,mapping=aes(x=Rank,y=Reads_counts))+ geom_line(size = 1) + 
 data[which(data[,2]== calculate_cutoff(data[,2], drawPlot=FALSE)$absolute),][1,1], calculate_cutoff(data[,2], drawPlot=FALSE)$absolute
 ), col="red", size=3)+annotate("text",x = c(0,50000,100000), y =  c(9000,9000,9000), label = c('cut_dot:',data[which(data[,2]== calculate_cutoff(data[,2],drawPlot=FALSE)$absolute),][1,1], calculate_cutoff(data[,2], drawPlot=FALSE)$absolute), size = 3)
 
-pdf(paste('//data/tusers/lixiangr/eRNA/single-cell/hg38/PBMCs/data/dELS_reads_',annotation,'.pdf',sep = ""))
+pdf(paste(annotation,'.pdf',sep = ""))
 print(p1)
 dev.off()
 write.table(c(data[which(data[,2]== calculate_cutoff(data[,2], drawPlot=FALSE)$absolute),][1,1], calculate_cutoff(data[,2], drawPlot=FALSE)$absolute
-),paste('//data/tusers/lixiangr/eRNA/single-cell/hg38/PBMCs/data/dELS_reads_',annotation,'cut_pot.txt',sep = ""))
-write.table(calculate_cutoff(data[,2], drawPlot=FALSE)$absolute,paste('//data/tusers/lixiangr/eRNA/single-cell/hg38/PBMCs/data/dELS_reads_dot_',annotation,'.txt',sep = ""), col.names= F, row.names= F)
+),paste(annotation,'_cut_pot.txt',sep = ""))
+write.table(calculate_cutoff(data[,2], drawPlot=FALSE)$absolute,paste(annotation,'_dot.txt',sep = ""), col.names= F, row.names= F)
