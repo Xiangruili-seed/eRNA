@@ -17,11 +17,17 @@ n=$(cat ${dir}/data/f_barcode.txt|wc -l)
 
 for q in $(seq $n)
 do
-	~/anaconda2/envs/r-env/bin/samtools index -@ 48 ${dir}/data/splits/CB_$q.bam
+	echo "nohup ~/anaconda2/envs/r-env/bin/samtools index -@ 48 ${dir}/data/splits/CB_$q.bam &" >>${dir}/data/reads.sh
 done
 wait;
+for i in $(seq 1 20 $n)
+do
+	sed -i ''"$i"'i wait;' ${dir}/data/reads.sh
+done
+wait;
+bash ${dir}/data/reads.sh
 
-
+wait;
 for q in $(seq $n)
 do
 	echo "nohup bedtools multicov -bams ${dir}/data/splits/CB_$q.bam -bed ${dir}/data/f_dELS_reads.bed > ${dir}/data/reads/reads_$q.txt &" >>${dir}/data/reads/reads.sh
