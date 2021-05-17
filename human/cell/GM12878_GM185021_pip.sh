@@ -23,3 +23,5 @@ source activate r-env
 nohup bash ~/eRNA/12878/signal_eRNA.sh ~/eRNA/12878/outs/filtered_feature_bc_matrix &
 nohup bash ~/eRNA/12878/signal_eRNA.sh ~/eRNA/185021/outs/filtered_feature_bc_matrix &
 
+nohup bash ~/eRNA/script/test_eRNA.sh ~/eRNA/12878/ ~/eRNA/12878/outs/filtered_feature_bc_matrix/data/f_dELS_reads.bed outs/filtered_feature_bc_matrix /data/tusers/lixiangr/eRNA/single-cell/hg38/PBMCs/data/pos_dELS.bed &
+nohup bash ~/eRNA/script/test_eRNA.sh ~/eRNA/185021/ ~/eRNA/185021/outs/filtered_feature_bc_matrix/data/f_dELS_reads.bed outs/filtered_feature_bc_matrix /data/tusers/lixiangr/eRNA/single-cell/hg38/PBMCs/data/pos_dELS.bed &
