@@ -1,4 +1,32 @@
 #####example for gm12878_gm185021
+#####run cellranger
+wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-17/SRR8551678/SRR8551678.1
+wait;
+nohup fastq-dump --gzip --split-files SRR8551678.1 &
+
+wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-17/SRR8551676/SRR8551676.1
+wait;
+nohup fastq-dump --gzip --split-files SRR8551676.1 &
+
+
+wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-17/SRR8551677/SRR8551677.1
+wait;
+nohup fastq-dump --gzip --split-files SRR8551677.1 &
+i=SRR8551678
+mv ${i}.1_1*.gz ${i}_S1_L001_R1_001.fastq.gz;
+mv ${i}.1_2*.gz ${i}_S1_L001_R2_001.fastq.gz;
+
+i=SRR8551677
+mv ${i}.1_1*.gz ${i}_S1_L001_R1_001.fastq.gz;
+mv ${i}.1_2*.gz ${i}_S1_L001_R2_001.fastq.gz;
+i=SRR8551676
+mv ${i}.1_1*.gz ${i}_S1_L001_R1_001.fastq.gz;
+mv ${i}.1_2*.gz ${i}_S1_L001_R2_001.fastq.gz;
+
+nohup ~/eRNA/cellranger-4.0.0/cellranger count --id=185021 --transcriptome=/home/lixiangr/eRNA/refdata-gex-GRCh38-2020-A --fastqs=/home/lixiangr/eRNA/GM185021/data --sample=SRR8551676 --nosecondary --jobmode=local &
+nohup ~/eRNA/cellranger-4.0.0/cellranger count --id=12878 --transcriptome=/home/lixiangr/eRNA/refdata-gex-GRCh38-2020-A --nosecondary --fastqs=/home/lixiangr/eRNA/GM12878/data/ --sample=SRR8551677 &
+nohup ~/eRNA/cellranger-4.0.0/cellranger count --id=185021_GM12878 --transcriptome=/home/lixiangr/eRNA/refdata-gex-GRCh38-2020-A --nosecondary --fastqs=/home/lixiangr/eRNA/GM185021_GM12878//data/ --sample=SRR8551678 &
+
 
 #########step 1: use seruat to filter data
 ################dir/barcodes.tsv dir/genes.tsv dir/matrix.mtx dir/data/bam
