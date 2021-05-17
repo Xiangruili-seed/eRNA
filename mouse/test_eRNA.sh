@@ -8,7 +8,7 @@ all=$4
 	nohup bwtool agg 300:300 ${bed} ${dir}/${annotation}/data/filtered_reverse.bigWig ${dir}/${annotation}/data/fpos_plus.txt &
 	nohup bwtool agg 300:300 ${bed} ${dir}/${annotation}/data/filtered_forward.bigWig  ${dir}/${annotation}/data/fpos_minus.txt &
 wait;
-	nohup Rscript RNA.R ${dir}/${annotation}/data/ ${annotation} &
+	nohup Rscript ~/eRNA/script/RNA.R ${dir}/${annotation}/data/ ${annotation} &
 #################chip signal
 
 ls -R ${dir}/chip/*.bigWig > ${dir}/chip/${annotation}.txt
