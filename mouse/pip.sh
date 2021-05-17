@@ -13,12 +13,14 @@ bedtools intersect -a mm10-ccREs.dELS_minus.bed -b F5.mm10.enhancers.bed >pos_dE
 ##############################run split bam by barcodes and get signal for positive enhancer 
 nohup bash ~/eRNA/script/step_bam.sh ~/eRNA/mesc/Mesendoderm ~/eRNA/refdata-gex-mm10-2020-A/pos_dELS.bed ~/eRNA/mesc/Mesendoderm/data/mesendoderm_txm.possorted_genome_bam.bam  &
 nohup bash ~/eRNA/script/step_bam.sh ~/eRNA/mesc/Germ_layer ~/eRNA/refdata-gex-mm10-2020-A/pos_dELS.bed ~/eRNA/mesc/Germ_layer/data/germlayer_txm.possorted_genome_bam.bam &
-nohup bash ~/eRNA/script/step_bam.sh ~/eRNA/mesc/mix ~/eRNA/refdata-gex-mm10-2020-A/pos_dELS.bed ~/eRNA/mesc/mix/data/mixed_txm.possorted_genome_bam.bam &
+#nohup bash ~/eRNA/script/step_bam.sh ~/eRNA/mesc/mix ~/eRNA/refdata-gex-mm10-2020-A/pos_dELS.bed ~/eRNA/mesc/mix/data/mixed_txm.possorted_genome_bam.bam &
 
 ############get signal for eRNA
 source activate r-env
 
 nohup bash ~/eRNA/script/signal_eRNA.sh ~/eRNA/mesc/Mesendoderm &
 nohup bash ~/eRNA/script/signal_eRNA.sh ~/eRNA/mesc/Germ_layer &
-nohup bash ~/eRNA/script/signal_eRNA.sh ~/eRNA/mesc/mix &
+#nohup bash ~/eRNA/script/signal_eRNA.sh ~/eRNA/mesc/mix &
 
+nohup bash ~/eRNA/script/test_eRNA.sh ~/eRNA/mesc/ ~/eRNA/mesc/Mesendoderm/data/f_dELS_reads.bed Mesendoderm ~/eRNA/refdata-gex-mm10-2020-A/pos_dELS.bed &
+nohup bash ~/eRNA/script/test_eRNA.sh ~/eRNA/mesc/ ~/eRNA/mesc/Germ_layer/data/f_dELS_reads.bed Germ_layer ~/eRNA/refdata-gex-mm10-2020-A/pos_dELS.bed &
