@@ -30,7 +30,7 @@ wait;
 for k in $(seq $n)
 do
     peakFile=$(cat ${dir}/chip/${annotation}.txt| awk -F "\t" '{if (NR == '$k') print $1}')
-    nohup Rscript ~/eRNA/script/chip_t.R $peakFile ${annotation} &
+    nohup Rscript ~/eRNA/script/chip_t.R $peakFile pos &
 
 
 done
