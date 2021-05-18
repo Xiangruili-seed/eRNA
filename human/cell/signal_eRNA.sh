@@ -45,6 +45,6 @@ wait;
 cd ${dir}/data/reads/
 for q in $(seq $n)
 do
-	cat ${dir}/data/reads/reads_$q.txt|awk '{if($5>0) print NR" ""'$q'"" "$5}'>${dir}/data/reads/matrix_$q.txt
+	cat ${dir}/data/reads/reads_$q.txt|awk '{if($7>0) print NR" ""'$q'"" "$7}'>${dir}/data/reads/matrix_$q.txt
 
 done
