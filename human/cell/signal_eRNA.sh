@@ -41,7 +41,7 @@ done
 wait;
 #################cut off>0
 
-for i in $(seq 1 20 $n)
+for i in $(seq 1 20 $n1)
 do
 	sed -i ''"$i"'i wait;' ${dir}/data/reads/reads.sh
 done
