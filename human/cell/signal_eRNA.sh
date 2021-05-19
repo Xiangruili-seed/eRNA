@@ -13,38 +13,32 @@ wait;
 
 mkdir -p ${dir}/data/reads
 
-n=$(cat ${dir}/data/f_barcode.txt|wc -l)
-
-for q in $(seq $n)
+n1=$(cat ${dir}/data/f_barcode.txt|wc -l)
+n=$(cat ${dir}/data/f_barcode.txt ${dir}/data/f_barcode.txt ${dir}/data/f_barcode.txt|wc -l)
+rm ${dir}/data/reads.sh
+for q in $(seq $n1)
 do
 	echo "nohup ~/anaconda2/envs/r-env/bin/samtools index -@ 48 ${dir}/data/splits/CB_$q.bam &" >>${dir}/data/reads.sh
 done
 wait;
-for i in $(seq 1 20 $n)
+
+for q in $(seq $n1)
+do
+	echo "nohup bedtools multicov -bams ${dir}/data/splits/CB_$q.bam -bed ${dir}/data/f_dELS_reads.bed > ${dir}/data/reads/reads_$q.txt &" >>${dir}/data/reads.sh
+
+done
+
+wait;
+#################cut off>0
+for q in $(seq $n1)
+do
+	echo "nohup cat ${dir}/data/reads/reads_$q.txt|awk '{if($7>0) print NR" ""'$q'"" "$7}'>${dir}/data/reads/matrix_$q.txt &" >>${dir}/data/reads.sh
+
+done
+wait;
+for i in $(seq 1 40 $n)
 do
 	sed -i ''"$i"'i wait;' ${dir}/data/reads.sh
 done
 wait;
-bash ${dir}/data/reads.sh
-
-wait;
-for q in $(seq $n)
-do
-	echo "nohup bedtools multicov -bams ${dir}/data/splits/CB_$q.bam -bed ${dir}/data/f_dELS_reads.bed > ${dir}/data/reads/reads_$q.txt &" >>${dir}/data/reads/reads.sh
-
-done
-wait;
-for i in $(seq 1 20 $n)
-do
-	sed -i ''"$i"'i wait;' ${dir}/data/reads/reads.sh
-done
-wait;
-bash ${dir}/data/reads/reads.sh
-wait;
-#################cut off>0
-cd ${dir}/data/reads/
-for q in $(seq $n)
-do
-	cat ${dir}/data/reads/reads_$q.txt|awk '{if($7>0) print NR" ""'$q'"" "$7}'>${dir}/data/reads/matrix_$q.txt
-
-done
+nohup bash ${dir}/data/reads.sh &
