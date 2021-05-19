@@ -51,8 +51,3 @@ nohup bash ${dir}/data/reads.sh &
 wait;
 nohup bash ${dir}/data/reads/reads.sh &
 wait;
-for q in $(seq $n1)
-do
-	cat ${dir}/data/reads/reads_$q.txt|awk '{if($7>0) print NR" ""'$q'"" "$7}'>${dir}/data/reads/matrix_$q.txt
-
-done
