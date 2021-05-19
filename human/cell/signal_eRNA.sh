@@ -51,3 +51,4 @@ nohup bash ${dir}/data/reads.sh &
 wait;
 nohup bash ${dir}/data/reads/reads.sh &
 wait;
+
