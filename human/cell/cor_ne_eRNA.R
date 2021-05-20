@@ -13,7 +13,7 @@ pdf(file = paste(dir,"/Nebulosa_cut.pdf",sep = ""))
 
 for (i in 1:nrow(data)) {
 	plot<-plot_density(pbmc, as.character(data[i,1:2]), joint = TRUE,method = "wkde",pal = "viridis")
-	print(plot)
+	print(plot+ plot_layout(ncol = 1))
 
 }
 
