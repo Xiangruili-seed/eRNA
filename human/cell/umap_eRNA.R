@@ -72,6 +72,6 @@ q10<-top10[which(top10$p_val_adj<0.05),]
 top100 <- pbmc.markers %>% group_by(cluster) %>% top_n(n = 100, wt = avg_log2FC)
 top1000 <- pbmc.markers %>% group_by(cluster) %>% top_n(n = 1000, wt = avg_log2FC)
 q<-top1000[which(top1000$p_val_adj<0.05),]
-save(pbmc,file=dir,'/.Rdata')
+save(pbmc,file=paste(dir,'/.Rdata',sep = ""))
 
 write.table(q,paste(dir,"top_0.05.txt",sep = ""),quote=F)
