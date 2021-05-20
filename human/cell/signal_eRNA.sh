@@ -22,7 +22,7 @@ do
 	echo "nohup ~/anaconda2/envs/r-env/bin/samtools index -@ 48 ${dir}/data/splits/CB_$q.bam &" >>${dir}/data/reads.sh
 done
 wait
-for i in $(seq 1 30 $n1)
+for i in $(seq 1 5 $n1)
 do
 	sed -i ''"$i"'i wait;' ${dir}/data/reads.sh
 done
@@ -41,7 +41,7 @@ done
 wait;
 #################cut off>0
 
-for i in $(seq 1 20 $n1)
+for i in $(seq 1 5 $n1)
 do
 	sed -i ''"$i"'i wait;' ${dir}/data/reads/reads.sh
 done
