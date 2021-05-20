@@ -61,3 +61,16 @@ nohup Rscript ~/eRNA/script/umap_eRNA.R ~/eRNA/185021/outs/filtered_feature_bc_m
 #nohup Rscript ~/eRNA/script/umap_eRNA.R ~/eRNA/185021_GM12878/outs/filtered_feature_bc_matrix/pos_add GM12878_GM18502 &
 #nohup Rscript ~/eRNA/script/umap_eRNA_1.R ~/eRNA/185021/outs/filtered_feature_bc_matrix/pos/ GM18502 &
 #nohup Rscript ~/eRNA/script/umap_eRNA_1.R ~/eRNA/185021/outs/filtered_feature_bc_matrix/pos_add/ GM18502 &
+###################eRNA-GEN PAIRS
+nohup bash ~/eRNA/script/gene_eRNA.sh ~/eRNA/12878/outs/filtered_feature_bc_matrix/pos_add/ ~/eRNA/refdata-gex-GRCh38-2020-A/genes/genes.gtf /data/tusers/lixiangr/eRNA/single-cell/hg38/PBMCs/data/GRCh38-ccREs.dELS.bed &
+nohup bash ~/eRNA/script/gene_eRNA.sh ~/eRNA/185021/outs/filtered_feature_bc_matrix/pos_add/ ~/eRNA/refdata-gex-GRCh38-2020-A/genes/genes.gtf /data/tusers/lixiangr/eRNA/single-cell/hg38/PBMCs/data/GRCh38-ccREs.dELS.bed &
+############################cut cor
+nohup Rscript ~/eRNA/script/cor_eRNA.R ~/eRNA/12878/outs/filtered_feature_bc_matrix/pos_add/ &
+nohup Rscript ~/eRNA/script/cor_eRNA.R ~/eRNA/185021/outs/filtered_feature_bc_matrix/pos_add/ &
+#########################ne
+nohup bash ~/eRNA/script/cor_eRNA.sh ~/eRNA/12878/outs/filtered_feature_bc_matrix/pos_add/ &
+nohup bash ~/eRNA/script/cor_eRNA.sh ~/eRNA/185021/outs/filtered_feature_bc_matrix/pos_add/ &
+
+
+
+
