@@ -46,3 +46,4 @@ nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam -o ${dir}/data/filtered.b
 
 
 nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam --filterRNAstrand reverse -o ${dir}/data/filtered_reverse.bigWig &
+wait;
