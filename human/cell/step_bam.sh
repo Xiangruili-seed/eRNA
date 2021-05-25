@@ -32,7 +32,7 @@ nohup bedtools multicov -bams ${dir}/data/f_filtered.bam -bed ${bed} -S >${dir}/
 nohup bedtools multicov -bams ${dir}/data/f_filtered.bam -bed ${bed} >${dir}/data/f_dELS_reads.txt &
 mkdir -p ${dir}/data//tmp
 nohup ~/anaconda2/envs/r-env/bin/samtools sort -@ 48 -t CB ${dir}/data/f_filtered.bam -o ${dir}/data/sorted_tags.bam -T ${dir}/data//tmp &
-
+wait;
 wait;
 
 
