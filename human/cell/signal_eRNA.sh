@@ -45,6 +45,10 @@ for i in $(seq 1 5 $n1)
 do
 	sed -i ''"$i"'i wait;' ${dir}/data/reads/reads.sh
 done
+
+echo "wait;">>${dir}/data/reads.sh
+echo "wait;">>${dir}/data/reads/reads.sh
+
 wait;
 ulimit -n 20000
 nohup bash ${dir}/data/reads.sh &
