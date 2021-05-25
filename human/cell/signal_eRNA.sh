@@ -46,10 +46,11 @@ do
 	sed -i ''"$i"'i wait;' ${dir}/data/reads/reads.sh
 done
 
-echo "wait;">>${dir}/data/reads.sh
-echo "wait;">>${dir}/data/reads/reads.sh
+
 
 wait;
+echo "wait;">>${dir}/data/reads.sh
+echo "wait;">>${dir}/data/reads/reads.sh
 ulimit -n 20000
 nohup bash ${dir}/data/reads.sh &
 wait;
