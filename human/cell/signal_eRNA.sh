@@ -14,7 +14,9 @@ wait;
 
 mkdir -p ${dir}/data/reads
 
-n1=$(cat ${dir}/data/f_barcode.txt ${dir}/data/f_barcode.txt|wc -l)
+n1=$(cat ${dir}/data/f_barcode.txt|wc -l)
+n=$(cat ${dir}/data/f_barcode.txt ${dir}/data/f_barcode.txt|wc -l)
+
 rm ${dir}/data/reads.sh
 echo "source activate r-env">>${dir}/data/reads.sh
 for q in $(seq $n1)
@@ -35,13 +37,13 @@ done
 wait;
 
 
-for i in $(seq 1 5 $n1)
+for i in $(seq 1 5 $n)
 do
 	sed -i ''"$i"'i wait;' ${dir}/data/reads.sh
 done
 
 
-for i in $(seq 1 5 $n1)
+for i in $(seq 1 5 $n)
 do
 	sed -i ''"$i"'i wait;' ${dir}/data/reads/reads.sh
 done
