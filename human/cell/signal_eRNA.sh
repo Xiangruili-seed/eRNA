@@ -51,6 +51,8 @@ done
 
 
 wait;
+echo "wait;">>${dir}/data/reads/reads.sh
+echo "wait;">>${dir}/data/reads.sh
 
 ulimit -n 20000
 nohup bash ${dir}/data/reads.sh &
