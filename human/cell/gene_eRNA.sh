@@ -10,7 +10,7 @@ cat ${dir}/top_0.05.txt|grep EH38D|sort -k 8 -u>${dir}/top_0.05_erna.txt
 cat ${gtf}|awk '{if($3 =="gene") print $1"\t"$4"\t"$5"\t"$16}'|grep 'chr'>${dir}/gene.bed
 cat ${bed}|sort -k 4 >${dir}/ccre.bed
 cat ${dir}/top_0.05_erna.txt|awk '{print $8}'|awk -F "-" '{print $2}'|sort >${dir}/select.bed
-join -1 1 -2 4 ${dir}/select.bed ${dir}/ccre.bed|awk '{print $2"\t"$3-500000"\t"$4+500000"\t"$1"\t"$6}'|awk '{if($2<0) print $1"\t0\t"$3"\t"$4"\t"$5 else print $0}'> ${dir}/select_ccre.bed
+join -1 1 -2 4 ${dir}/select.bed ${dir}/ccre.bed|awk '{print $2"\t"$3-500000"\t"$4+500000"\t"$1"\t"$6}'|awk '{if($2<0) print $1"\t0\t"$3"\t"$4"\t"$5; else print $0}'> ${dir}/select_ccre.bed
  bedtools intersect -a ${dir}/select_ccre.bed -b ${dir}/gene.bed -wo >${dir}/select_gene.bed
  cat ${dir}/select_gene.bed|awk '{print $1"-"$4"\t"$9}'| sed 's/\"//g'| sed 's/\;//g'|sort -k 2 >${dir}/gene_ccre.txt
 sort -k 8 ${dir}/top_0.05.txt>${dir}/top_0.05_s.txt
