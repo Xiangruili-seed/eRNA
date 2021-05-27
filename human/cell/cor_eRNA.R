@@ -288,7 +288,7 @@ result1<-cbind(result,p.adjust)
 write.table(result1,paste(dir,"/top_0.05_cor.txt",sep = ""),quote=F,col.names=F,row.names=F)
 
 
-result2<-result1[which(result1[,3]>0.9),]
+result2<-result1[which(result1[,3]>0.6),]
 result3<-result2[which(result2[,5]<0.1),]
 
 pdf(file = paste(dir,"/Nebulosa_cor.pdf",sep = ""))
@@ -303,4 +303,4 @@ for (i in 1:nrow(result3)) {
 }
 dev.off()
 
-write.table(result2,paste(dir,"/top_0.05_cor_cut.txt",sep = ""),quote=F,col.names=F,row.names=F)
+write.table(result3,paste(dir,"/top_0.05_cor_cut.txt",sep = ""),quote=F,col.names=F,row.names=F)
