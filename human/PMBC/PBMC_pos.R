@@ -11,7 +11,7 @@ plot<-VlnPlot(pbmc,features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), nco
 plot1 <- FeatureScatter(pbmc, feature1 = "nCount_RNA", feature2 = "percent.mt")
 plot2 <- FeatureScatter(pbmc, feature1 = "nCount_RNA", feature2 = "nFeature_RNA")
 
-pdf("~/eRNA/pbmcs/pos/read_count_p.pdf")
+pdf("~/eRNA/pbmcs/pos_add/read_count_p.pdf")
 plot1
 plot2
 plot
