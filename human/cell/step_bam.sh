@@ -41,9 +41,9 @@ mkdir -p ${dir}/data/splits
 cd ${dir}/data/splits/
 ################split bam
 nohup ~/anaconda2/envs/r-env/bin/python ~/eRNA/script/split.py ${dir}/data/sorted_tags.bam ${dir}/data/splits/ ${dir}/data/f_barcode.txt &
-nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam --filterRNAstrand forward -o ${dir}/data/filtered_forward.bigWig &
-nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam -o ${dir}/data/filtered.bigWig &
+nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam --normalizeUsing CPM --filterRNAstrand forward -o ${dir}/data/filtered_forward.bigWig &
+nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam --normalizeUsing CPM -o ${dir}/data/filtered.bigWig &
 
 
-nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam --filterRNAstrand reverse -o ${dir}/data/filtered_reverse.bigWig &
+nohup bamCoverage -bs 10 -b ${dir}/data/f_filtered.bam --normalizeUsing CPM --filterRNAstrand reverse -o ${dir}/data/filtered_reverse.bigWig &
 wait;
