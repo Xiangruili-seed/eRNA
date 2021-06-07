@@ -30,7 +30,7 @@ gzip -d -c ${dir}/barcodes.tsv.gz|awk '{print NR" CB:Z:"$0}'>${dir}/pos_add_${ty
 cat ${dir}/data//f_barcode.txt|awk '{print NR"\t"$0}'>${dir}/pos_add_${type}//f_barcode.txt
 join -1 2 -2 2 -o 1.1 2.1 ${dir}/pos_add_${type}/all_barcode.txt ${dir}/pos_add_${type}/f_barcode.txt|sort -k 2 >${dir}/pos_add_${type}/id.txt
 tail -n +4 ${dir}/pos_${type}/matrix.mtx|sort -k 2 >${dir}/pos_add_${type}/m.txt
-join -1 2 -2 2 -o 1.1 2.1 1.3 ${dir}/pos_add_${type}/m.txt ${dir}/pos_add/id.txt|awk '{print $1+features"\t"$2"\t"$3}' features=$features >${dir}/pos_ad_${type}d/t.txt
+join -1 2 -2 2 -o 1.1 2.1 1.3 ${dir}/pos_add_${type}/m.txt ${dir}/pos_add_${type}/id.txt|awk '{print $1+features"\t"$2"\t"$3}' features=$features >${dir}/pos_ad_${type}d/t.txt
 gzip -d -c ${dir}/matrix.mtx.gz|head -2 > ${dir}/pos_add_${type}/matrix.mtx
 gzip -d -c ${dir}/matrix.mtx.gz|sed -n '3p'|awk '{print $1+eRNA"\t"$2"\t"$3+line}' eRNA=$eRNA line=$line>>${dir}/pos_add_${type}/matrix.mtx
 gzip -d -c ${dir}/matrix.mtx.gz|tail -n +4 |awk '{print $1"\t"$2"\t"$3}'>${dir}/pos_add_${type}/a.txt
