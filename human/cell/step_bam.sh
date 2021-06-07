@@ -2,7 +2,7 @@
 dir=$1
 bed=$2
 BAM_FILE=$3
-
+type=$4
 source activate r-env
 
 # Save the header lines20.12.27
@@ -27,9 +27,9 @@ wait;
 #nohup ~/anaconda2/envs/r-env/bin/samtools sort -@ 48 -t CB f_filtered.bam -o sorted_tags.bam -T /data/tusers/lixiangr/eRNA/single-cell/hg38/PBMCs/data/tmp &
 ulimit -n 20000
 
-nohup bedtools multicov -bams ${dir}/data/f_filtered.bam -bed ${bed} -s >${dir}/data/f_minus_dELS_reads.txt &
-nohup bedtools multicov -bams ${dir}/data/f_filtered.bam -bed ${bed} -S >${dir}/data/f_plus_dELS_reads.txt &
-nohup bedtools multicov -bams ${dir}/data/f_filtered.bam -bed ${bed} >${dir}/data/f_dELS_reads.txt &
+nohup bedtools multicov -bams ${dir}/data/f_filtered.bam -bed ${bed} -s >${dir}/data/f_minus_${type}_reads.txt &
+nohup bedtools multicov -bams ${dir}/data/f_filtered.bam -bed ${bed} -S >${dir}/data/f_plus_${type}_reads.txt &
+nohup bedtools multicov -bams ${dir}/data/f_filtered.bam -bed ${bed} >${dir}/data/f_${type}_reads.txt &
 mkdir -p ${dir}/data//tmp
 nohup ~/anaconda2/envs/r-env/bin/samtools sort -@ 48 -t CB ${dir}/data/f_filtered.bam -o ${dir}/data/sorted_tags.bam -T ${dir}/data//tmp &
 wait;
