@@ -18,7 +18,7 @@ nohup bash ~/eRNA/12878/signal_eRNA.sh ~/eRNA/hesc/rep1/hesc/outs/filtered_featu
 wait;
 source activate r-env
 
-nohup bash ~/eRNA/script/test_eRNA.sh ~/eRNA/hesc/rep1/hesc/ ~/eRNA/hesc/rep1/hesc/outs/filtered_feature_bc_matrix/data/f_dELS_reads.bed outs/filtered_feature_bc_matrix /data/tusers/lixiangr/eRNA/single-cell/hg38/PBMCs/data/pos_dELS.bed &
+nohup bash ~/eRNA/script/test_eRNA.sh ~/eRNA/hesc/rep1/hesc/ ~/eRNA/hesc/rep1/hesc/outs/filtered_feature_bc_matrix/data/f_dELS_reads.bed outs/filtered_feature_bc_matrix /data/tusers/lixiangr/eRNA/single-cell/hg38/PBMCs/data/pos_dELS.bed dELS &
 wait;
 mkdir -p  ~/eRNA/hesc/rep1/hesc//outs/filtered_feature_bc_matrix//pos_add_dELS/
 
