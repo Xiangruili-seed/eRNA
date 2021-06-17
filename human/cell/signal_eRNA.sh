@@ -9,7 +9,7 @@ wait;
 #########cut dot
 
 	d=$(cat ${dir}/data/f_${type}_reads.txt_dot.txt|awk '{print $0}')
-	awk '{if($7 >n)  print $1"\t"$2"\t"$3"\t"$4"\t"$7"\t"$6}' n=$d ${dir}/data/f_${type}_reads.txt >${dir}/data/f_${type}_reads.bed
+	awk '{if($7 >n)  print $1"\t"$2"\t"$3"\t"$4"\t0\t"$6}' n=$d ${dir}/data/f_${type}_reads.txt >${dir}/data/f_${type}_reads.bed
 
 wait;
 
